@@ -1,5 +1,5 @@
 {
-  "name": "demo2",
+  "name": "AWS-FeatureRoll",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.1.32",
     "ejs": "^2.3.1",
     "express": "^4.12.4",
     "moment": "^2.10.3",

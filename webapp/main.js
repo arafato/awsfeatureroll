@@ -1,9 +1,10 @@
 var express = require('express');
-var app = express();
 var path = require('path');
 var moment = require('moment');
 var mysql = require('mysql');
 var config = require('./config.js');
+
+var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
@@ -36,18 +37,22 @@ app.get('/feature', function(req, res, next) {
 
     var startdate;
     if (req.query.startdate) {
-	startdate = moment(startdate).unix();
-	if (!startdate.isValid()) {
+	var momstart = moment(req.query.startdate);
+	if (!momstart.isValid()) {
 	    res.json({ error: "Invalid format of startdate. Use YYYY-MM-DD" });
 	}
+	
+	startdate = momstart.unix();
     }
 
     var enddate;
     if (req.query.enddate) {
-	enddate = moment(enddate).unix();
-	if (!enddate.isValid()) {
+	var momend = moment(req.query.enddate);
+	if (!momend.isValid()) {
 	    res.json({ error: "Invalid format of enddate. Use YYYY-MM-DD" });
 	}
+	
+	enddate = momend.unix();
     }
 
     var category;
@@ -68,8 +73,6 @@ app.get('/feature', function(req, res, next) {
 	database : config.database,
 	port: 3306
     });
-
-    console.log(config);
     
     connection.connect();
 
@@ -78,7 +81,6 @@ app.get('/feature', function(req, res, next) {
 	    console.log(err);
 	}
 	else if (result) {
-	    console.log("Successfully queried DB: " + result);
 	    res.json(result);
 	}
     });
@@ -98,18 +100,26 @@ function buildQueryString(startdate, enddate, category) {
     else if (startdate !== undefined && enddate === undefined) {
 	timeClause = "unixtimestamp >= " + startdate;
     }
+    else {
+	timeClause = "";
+    }
 
     var categoryClause;
     if (category !== undefined) {
-	categoryClause = "where category = " + category;
+	categoryClause = "category = '" + category.toLowerCase() + "'";
+    }
+    else {
+	categoryClause = "";
     }
 
-    if (timeClause !== undefined) {
+    if (timeClause !== "" && categoryClause !== "") {
 	categoryClause = categoryClause + " and ";
     }
 
-    var finalClause = "select * from features " +  categoryClause + timeClause + "order by category";
+    var finalClause = "select * from features where " +  categoryClause + timeClause + " order by category";
 
+    console.log(finalClause);
+    
     return finalClause;
 }
 
