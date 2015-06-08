@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Fancy Pants</title>
+    <title>AWS Feature Roll</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Fancy Pants</a>
+        <a class="navbar-brand">AWS Feature Roll</a>
       </div>
     </div>
     </nav>
@@ -30,25 +30,46 @@
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, Tel Aviv!</h1>
-        <p>So many visitors have been here: </p>
-	<p class="text-success">We hope you have good time!</p>
-	<p><a class="btn btn-primary btn-lg"
-	href="http://aws.amazon.com/summits/tel-aviv/" role="button" target="_blank">Learn more &raquo;</a></p>
+        <h1>Welcome to the AWS Feature Roll</h1>
+        <p>There are lot of services and features being released every week on the AWS platform. Keeping track about what's happening
+	  is now as simple as</p>
+	<p>
+	  <code>$ wget awsfeatureroll.elasticbeanstalk.com/feature?category=compute&startdate=2015-01-01&enddate=2015-06-01 </code>
+	</p>
       </div>
     </div>
 
     <div class="container">
-      <img src="img/telaviv.jpg"/>
-      <hr>
-      <footer>
-      <p>&copy; Oliver Arafat 2015</p>
-      </footer>
+    <h2>REST INTERFACE</h2>
+ 
+    GET feature/
+  
+  <h3>Query parameters:</h3>
+  
+  <b>cat (optional)</b> - compute | storagecdn | database | networking | admin-sec | deployment | analytics | appservice | mobile | enterprise | other
+  <br>
+  <b>startdate (optional)</b> - YYYY-MM-DD
+  if without dateend, all matching items until current date are returned
+  <br>
+  <b>enddate (optional)</b> - YYYY-MM-DD
+  if without datestart, all matching items until earliest date are returned
+
+  <h3>Data Structure</h3>
+  <p>Here's an example:</p>
+    <p>
+      <code>
+  [{"id":8,"category":"Compute","unixtimestamp":1432764000,"published":"Thu May 28 2015","title":"AWS Lambda Supports Uploading Code from S3","url":"https://aws.amazon.com/about-aws/whats-new/2015/05/aws-lambda-supports-uploading-code-from-s3/"}, ...]
+      </code>
+    </p>
+  <hr>
+  <footer>
+    <p>&copy; Oliver Arafat 2015</p>
+  </footer>
     </div>
-
-
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    
   </body>
 </html>

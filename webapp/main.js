@@ -20,7 +20,7 @@ var categories = ["compute", "storagecdn", "database", "networking", "admin-sec"
 /*
  * REST INTERFACE
  *
- * If no time(-range) parameter is given, the latest 10 features are returned.
+ * If no time(-range) parameter is given, all stored features ever released (since 2012) are returned.
  * 
  * Query parameters:
  * 
