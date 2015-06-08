@@ -106,7 +106,7 @@ function buildQueryString(startdate, enddate, category) {
 
     var categoryClause;
     if (category !== undefined) {
-	categoryClause = "category = '" + category.toLowerCase() + "'";
+	categoryClause = "category = '" + mapCategoryName(category.toLowerCase()) + "'";
     }
     else {
 	categoryClause = "";
@@ -134,9 +134,9 @@ function mapCategoryName(cat) {
 	return "Administration and Security";
 	break;
     case "deployment":
-	return "Deployment and Security";
+	return "Deployment and Management";
 	break;
-    case "appservices":
+    case "appservice":
 	return "Application Services";
 	break;
     case "mobile":
