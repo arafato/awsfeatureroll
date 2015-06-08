@@ -123,4 +123,31 @@ function buildQueryString(startdate, enddate, category) {
     return finalClause;
 }
 
+function mapCategoryName(cat) {
+
+    switch(cat) {
+	
+    case "storagecdn":
+	return "Storage and Content Delivery";
+	break;
+    case "admin-sec":
+	return "Administration and Security";
+	break;
+    case "deployment":
+	return "Deployment and Security";
+	break;
+    case "appservices":
+	return "Application Services";
+	break;
+    case "mobile":
+	return "Mobile Services";
+	break;
+    case "enterprise":
+	return "Enterprise Apps";
+	break;
+    default:
+	return cat;
+    }
+}
+
 module.exports = app;
