@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var moment = require('moment');
@@ -33,7 +34,7 @@ var categories = ["compute", "storagecdn", "database", "networking", "admin-sec"
  * enddate (optional) - YYYY-MM-DD
  * if without datestart, all matching items until earliest date are returned
 */
-app.get('/feature', function(req, res, next) {
+app.get('/api/feature', function(req, res, next) {
 
     var startdate;
     if (req.query.startdate) {

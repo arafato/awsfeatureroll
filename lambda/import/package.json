@@ -1,0 +1,15 @@
+{
+  "name": "featureroll-import",
+  "version": "1.0.0",
+  "description": "",
+  "main": "import.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oliver Arafat",
+  "license": "ISC",
+  "dependencies": {
+    "aws-featureroll-parser": "0.0.1",
+    "mysql": "^2.7.0"
+  }
+}
