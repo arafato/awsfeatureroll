@@ -119,8 +119,6 @@ function buildQueryString(startdate, enddate, category) {
 
     var finalClause = "select * from features where " +  categoryClause + timeClause + " order by category";
 
-    console.log(finalClause);
-    
     return finalClause;
 }
 
