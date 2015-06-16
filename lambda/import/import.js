@@ -2,10 +2,10 @@ var mysql = require("mysql");
 var parser = require("aws-featureroll-parser");
 
 var connection = mysql.createConnection({
-    host     : process.env.DBHOST,
-    user     : process.env.DBUSER,
-    password : process.env.DBPASSWORD,
-    database : process.env.DATABASE
+    host     : "XXX",
+    user     : "XXX",
+    password : "XXX",
+    database : "XXX"
 });
 
 var year = new Date().getFullYear();
@@ -46,6 +46,15 @@ function insertNewFeatures(features) {
 }
 
 exports.handler = function(event, context) {
+
+    if (event.type !== "chime") {
+	context.done();
+    }
+
+    if (event.hour !== "00" && event.minute !== "00") {
+	context.done();
+    }
+    
     parser.getFeatures(year, function(results) {
 	connection.connect();
 	getLastTimestamp(function(currentTimestamp) {
@@ -62,6 +71,7 @@ exports.handler = function(event, context) {
 	    }
 	    
 	    connection.end();
+	    context.done();
 	});
     });
 }
