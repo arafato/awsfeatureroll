@@ -45,21 +45,23 @@ function insertNewFeatures(features) {
     }
 }
 
-parser.getFeatures(year, function(results) {
-    connection.connect();
-    getLastTimestamp(function(currentTimestamp) {
-
-	for (var i = 0; i < results.length; ++i) {
-
-	    console.log(results[i].date + " <= " + currentTimestamp);
-
-	    if (results[i].timestamp <= currentTimestamp) {
-
-		insertNewFeatures(results.splice(0, i));
-		break;
+exports.handler = function(event, context) {
+    parser.getFeatures(year, function(results) {
+	connection.connect();
+	getLastTimestamp(function(currentTimestamp) {
+	    
+	    for (var i = 0; i < results.length; ++i) {
+		
+		console.log(results[i].date + " <= " + currentTimestamp);
+		
+		if (results[i].timestamp <= currentTimestamp) {
+		    
+		    insertNewFeatures(results.splice(0, i));
+		    break;
+		}
 	    }
-	}
-
-	connection.end();
+	    
+	    connection.end();
+	});
     });
-});
+}
