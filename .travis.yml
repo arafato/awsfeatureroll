@@ -12,6 +12,7 @@ env:
     secure:
       "Hogq7ty12wbW+1IaLEogvlEqRiQ6Lw3rzbZD8dVPnK+qX+c0znRhQTCSpRsphb1YFgDnQ26WpkWKXSxFVD56kiZRgxzi4YqpTWIre7i0gmdzmTjFKC+zMZO6QTGGZrq6MDLQFCcCMLguoa2OGRpd7W6UYJ/zuTREfBxZIq6lb98vGLzmIHAYVFiISRbaKbYZrAeTatIyYBh+9zjVjAvNXvPN8cW5uw9uKIOLZFMts+FzamqJ7HxJmKlBkV5J5NBkS31ZoNQM/aUhoWDOBVX7AoE4NWBRn5YfH9eQn7ngAjC2i5nA/NEjVyCr0UhrSHPZeQBENM9g+3QUPBHntbx1abPuKBrutSHirPH1XyqGrv3qe/neStaTcKt8MOgbbe4xAGt3+n1nJbTuIa1YdScj20jq4hUQwVleI2P75dBC7r/wKor9n+R69MyExK0abTsHpBMTyAZq2SrL6OKD63MwzXL4/NtmvPLwlp/Cq4zCvmK24CMhcPRwujCK9G7pkR2iM0iylc6Rs8efjAcHZ5/5XZg8dD8jF9GsirbBxiZS5scT2E00xjsxk3KkdiViFjKpiuVNJVTeqh6eWOe7vh3i+m9+TS9Znz+MQ3SqvqGa9onaDFZTAd1DaU+hrFRHoOpRTtQp5c6pCj+S5096GanNt1ddoN4IgYgiBmwJqvKMaoY="
 
+before_deploy: cd webapp
 deploy:
   provider: elasticbeanstalk
   region: us-east-1
@@ -19,5 +20,5 @@ deploy:
   env: awsfeatureroll
   bucket_name: elasticbeanstalk-us-east-1-797996333664
   on:
-    repo: awsfeatureroll/webapp
+    repo: awsfeatureroll
     branch: master
