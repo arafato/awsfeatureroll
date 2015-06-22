@@ -20,5 +20,5 @@ deploy:
   env: awsfeatureroll
   bucket_name: elasticbeanstalk-us-east-1-797996333664
   on:
-    repo: awsfeatureroll
+    repo: arafato/awsfeatureroll
     branch: master
