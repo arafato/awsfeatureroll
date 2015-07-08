@@ -52,7 +52,7 @@ app.get('/api/slides', function(req, res) {
     queryUtils.getFeatures(connection, req.query, function(json) {
 	json = JSON.stringify(json);
 	var result = JSON.parse(json);
-	var features = [];
+	var features = {};
 	for(var i = 0; i < result.length; ++i) {
 	    
 	    if (features[result[i].category] === undefined) {
@@ -62,7 +62,7 @@ app.get('/api/slides', function(req, res) {
 	    features[result[i].category].push(result[i]);
 	}
 
-	// res.render('revealjs-slides');
+	res.render('revealjs-slides', { allFeatures: features});
     });
 
     connection.end();
