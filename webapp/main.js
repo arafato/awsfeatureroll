@@ -95,33 +95,6 @@ app.get('/api/slides', function(req, res) {
     connection.end();
 });
 
-app.get('/api/ziptest', function(req, res) {
-    var archive = archiver('zip');
-
-    archive.on('error', function(err) {
-	console.log('error: ' + err);
-	res.status(500).send({error: err.message});
-    });
-    
-    res.on('close', function() {
-	console.log('Archive wrote %d bytes', archive.pointer());
-
-	return res.status(200).send('OK').end();
-    });
-
-    res.attachment('archive-name.zip');
-
-    archive.pipe(res);
-    var p = path.join(__dirname, 'public/revealjs-template/');
-    
-    archive.bulk([
-	{ expand: true, cwd: p, src: ['**'] }
-    ]);
-    
-  
-    archive.finalize();
-});
-
 /* If no time(-range) parameter is given, all stored features ever released are returned.
  * 
  * Query parameters:
