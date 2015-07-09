@@ -3,6 +3,8 @@ var path = require('path');
 var mysql = require('mysql');
 var config = require('./config.js');
 var queryUtils = require('./queryUtils.js');
+var archiver = require('archiver');
+var fs = require('fs');
 
 var app = express();
 
@@ -62,10 +64,62 @@ app.get('/api/slides', function(req, res) {
 	    features[result[i].category].push(result[i]);
 	}
 
-	res.render('revealjs-slides', { allFeatures: features});
+	res.render('revealjs-slides', { allFeatures: features}, function(err, html) {
+	    var archive = archiver('zip');
+	    
+	    archive.on('error', function(err) {
+		console.log('error: ' + err);
+		res.status(500).send({error: err.message});
+	    });
+	    
+	    res.on('close', function() {
+		return res.status(200).send('OK').end();
+	    });
+	    
+	    res.attachment('aws-feature-slidedeck.zip');
+	    
+	    archive.pipe(res);
+	    var p = path.join(__dirname, 'public/revealjs-template/');
+	    
+	    archive.bulk([
+		{ expand: true, cwd: p, src: ['**'] }
+	    ]);
+
+	    archive.append(html, { name: 'index.html' });
+	    	    
+	    archive.finalize();
+	});
+	
+    });
+    
+    connection.end();
+});
+
+app.get('/api/ziptest', function(req, res) {
+    var archive = archiver('zip');
+
+    archive.on('error', function(err) {
+	console.log('error: ' + err);
+	res.status(500).send({error: err.message});
+    });
+    
+    res.on('close', function() {
+	console.log('Archive wrote %d bytes', archive.pointer());
+
+	return res.status(200).send('OK').end();
     });
 
-    connection.end();
+    res.attachment('archive-name.zip');
+
+    archive.pipe(res);
+    var p = path.join(__dirname, 'public/revealjs-template/');
+    
+    archive.bulk([
+	{ expand: true, cwd: p, src: ['**'] }
+    ]);
+    
+  
+    archive.finalize();
 });
 
 /* If no time(-range) parameter is given, all stored features ever released are returned.
