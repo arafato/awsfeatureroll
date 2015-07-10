@@ -51,7 +51,8 @@
 	<ul>
 	  <% for (var i = 0; i < (allFeatures[key]).length; ++i) { %>
 	  <li>
-	  <%= (allFeatures[key][i]).title %>
+	  <%= (allFeatures[key][i]).title %> <a href="<%= allFeatures[key][i].url %>" target="_blank"><i class="fa fa-external-link"></i>
+</a>
 	  </li>
 	  <% } %>
 	</ul>
