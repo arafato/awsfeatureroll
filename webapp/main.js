@@ -41,8 +41,14 @@ app.get('/', function (req, res) {
  * if without datestart, all matching items until earliest date are returned
 */
 app.get('/api/slides', function(req, res) {
+
+    if (req.query.startdate === undefined || req.query.enddate === undefined) {
+	res.status(500).send({error: 'You must specify a start and end date: use MM-DD-YYYY format'});
+    }
+    
     var startdate = moment(req.query.startdate);
     var enddate = moment(req.query.enddate);
+
     if (!startdate.isValid() || !enddate.isValid()) {
 	res.status(500).send({error: 'invalid date format: use MM-DD-YYYY'});
     }
