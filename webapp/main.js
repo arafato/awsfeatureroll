@@ -3,6 +3,9 @@ var path = require('path');
 var mysql = require('mysql');
 var config = require('./config.js');
 var queryUtils = require('./queryUtils.js');
+var archiver = require('archiver');
+var fs = require('fs');
+var moment = require('moment');
 
 var app = express();
 
@@ -39,6 +42,17 @@ app.get('/', function (req, res) {
 */
 app.get('/api/slides', function(req, res) {
 
+    if (req.query.startdate === undefined || req.query.enddate === undefined) {
+	res.status(500).send({error: 'You must specify a start and end date: use MM-DD-YYYY format'});
+    }
+    
+    var startdate = moment(req.query.startdate);
+    var enddate = moment(req.query.enddate);
+
+    if (!startdate.isValid() || !enddate.isValid()) {
+	res.status(500).send({error: 'invalid date format: use MM-DD-YYYY'});
+    }
+    
     var connection = mysql.createConnection({
 	host     : config.dbhost,
 	user     : config.dbuser,
@@ -62,9 +76,51 @@ app.get('/api/slides', function(req, res) {
 	    features[result[i].category].push(result[i]);
 	}
 
-	res.render('revealjs-slides', { allFeatures: features});
+	var author =  req.query.author || 'Amazon Web Services';
+	var twitter = req.query.twitter || 'AWS_Aktuell';
+	var title = req.query.title || 'AWS Feature Update';
+	
+	res.render('revealjs-slides',
+		   {
+		       allFeatures: features,
+		       author: author,
+		       title: title,
+		       twitter: twitter,
+		       startdate: startdate.format('MMMM Do'),
+		       enddate: enddate.format('MMMM Do YYYY')
+		   },
+		   function(err, html) {
+		       if (err) {
+			   console.log(err);
+			   return;
+		       }
+		       
+		       var archive = archiver('zip');
+	    
+		       archive.on('error', function(err) {
+			   console.log('error: ' + err);
+			   res.status(500).send({error: err.message});
+		       });
+		       
+		       res.on('close', function() {
+			   return res.status(200).send('OK').end();
+		       });
+		       
+		       res.attachment('aws-feature-slidedeck.zip');
+		       
+		       archive.pipe(res);
+		       var p = path.join(__dirname, 'public/revealjs-template/');
+		       
+		       archive.bulk([
+			   { expand: true, cwd: p, src: ['**'] }
+		       ]);
+		       
+		       archive.append(html, { name: 'index.html' });
+	    	       
+		       archive.finalize();
+		   });
     });
-
+    
     connection.end();
 });
 

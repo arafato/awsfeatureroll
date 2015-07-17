@@ -34,13 +34,13 @@
 
 	<section>
           <br><br><br>
-          <h1 style="margin-bottom:10px">AWS Feature Update</h1>
-          <p style="margin-bottom:200px">June 2nd - July 7th</p>
+          <h1 style="margin-bottom:10px"><%= title %></h1>
+          <p style="margin-bottom:200px"><%= startdate %> - <%= enddate %></p>
           <p style="text-align:right">
-            <img src="media/aws_logo/250px-aws_logo_web-black.png" style="width:200px; margin-bottom:1em" />
-            <img src="media/aws_logo/250px-aws_logo_web-white.png" style="width:200px; margin-bottom:1em" />
+            <img src="media/aws_logo/250px-AWS_Logo_Web-Black.png" style="width:200px; margin-bottom:1em" />
+            <img src="media/aws_logo/250px-AWS_Logo_Web-White.png" style="width:200px; margin-bottom:1em" />
             <br/>
-	    Oliver Arafat- <a href="https://twitter.com/oliverarafat"><i class="fa fa-twitter"></i>oliverarafat</a>
+	    <%= author %> - <a href="https://twitter.com/<%= twitter %>"><i class="fa fa-twitter"></i><%= twitter %></a>
           </p>
         </section>
 
@@ -51,7 +51,8 @@
 	<ul>
 	  <% for (var i = 0; i < (allFeatures[key]).length; ++i) { %>
 	  <li>
-	  <%= (allFeatures[key][i]).title %>
+	  <%= (allFeatures[key][i]).title %> <a href="<%= allFeatures[key][i].url %>" target="_blank"><i class="fa fa-external-link"></i>
+</a>
 	  </li>
 	  <% } %>
 	</ul>
@@ -61,9 +62,9 @@
 
 	<section class="centered">
           <h2>Thanks!</h2>
-          <p>Give feedback: <a href="https://twitter.com/oliverarafat"><i class="fa fa-twitter"></i>@oliverarafat</a></p>
-          <img src="media/AWS_logo/250px-aws_logo_web-black.png" style="width:200px; margin-top:1em;" />
-          <img src="media/AWS_logo/250px-aws_logo_web-white.png" style="width:200px; margin-top:1em;" />
+          <p>Give feedback: <a href="https://twitter.com/<%= twitter %>"><i class="fa fa-twitter"></i>@<%= twitter %></a></p>
+          <img src="media/aws_logo/250px-AWS_Logo_Web-Black.png" style="width:200px; margin-top:1em;" />
+          <img src="media/aws_logo/250px-AWS_Logo_Web-White.png" style="width:200px; margin-top:1em;" />
         </section>
       </div>
     </div>
