@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>User Group Meetup - Hamburg</title>
+    <meta name="description" content="aws feature roll june (6/2 - 7/7) 2015">
+    <meta name="author" content="Oliver Arafat">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/aws-light.css" id="theme">
+    <link rel="stylesheet" href="css/highlight-carlco-light.css" id="highlight">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+  </head>
+  <body>
+    <div id="switchLight">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/aws-light.css');
+            document.getElementById('highlight').setAttribute('href', 'css/highlight-carlco-light.css');
+            return false;">
+        <i class="fa fa-sun-o"></i> <span>Light</span>
+      </a>
+    </div>
+    <div id="switchDark">
+      <a href="#" onclick="document.getElementById('theme').setAttribute('href', 'css/theme/aws-dark.css');
+            document.getElementById('highlight').setAttribute('href', 'css/highlight-carlco-dark.css');
+            return false;">
+        <i class="fa fa-moon-o"></i> <span>Dark</span>
+      </a>
+    </div>
+
+    <div class="reveal">
+      <div class="slides">
+
+	<section>
+          <br><br><br>
+          <h1 style="margin-bottom:10px"><%= title %></h1>
+          <p style="margin-bottom:200px"><%= startdate %> - <%= enddate %></p>
+          <p style="text-align:right">
+            <img src="media/aws_logo/250px-AWS_Logo_Web-Black.png" style="width:200px; margin-bottom:1em" />
+            <img src="media/aws_logo/250px-AWS_Logo_Web-White.png" style="width:200px; margin-bottom:1em" />
+            <br/>
+	    <%= author %> - <a href="https://twitter.com/<%= twitter %>"><i class="fa fa-twitter"></i><%= twitter %></a>
+          </p>
+        </section>
+
+	<% for (var key in allFeatures) { %>
+	<% if (allFeatures.hasOwnProperty(key)) { %>
+	<section>
+	<h2><%= key %></h2>
+	<ul>
+	  <% for (var i = 0; i < (allFeatures[key]).length; ++i) { %>
+	  <li>
+	  <%= (allFeatures[key][i]).title %> <a href="<%= allFeatures[key][i].url %>" target="_blank"><i class="fa fa-external-link"></i>
+</a>
+	  </li>
+	  <% } %>
+	</ul>
+	</section>
+	<% } %>
+	<% } %>
+
+	<section class="centered">
+          <h2>Thanks!</h2>
+          <p>Give feedback: <a href="https://twitter.com/<%= twitter %>"><i class="fa fa-twitter"></i>@<%= twitter %></a></p>
+          <img src="media/aws_logo/250px-AWS_Logo_Web-Black.png" style="width:200px; margin-top:1em;" />
+          <img src="media/aws_logo/250px-AWS_Logo_Web-White.png" style="width:200px; margin-top:1em;" />
+        </section>
+      </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            margin: 0,
+//	  width: 800,
+//	  height: 600,
+
+            // Bounds for smallest/largest possible scale to apply to content
+            minScale: 0.2,
+            maxScale: 1.2,
+            transition: 'fadeg',
+            transitionSpeed: 'fast',
+            // Optional reveal.js plugins
+            dependencies: [
+                {src: 'plugin/highlight/highlight.pack.js', async: true, callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }},
+                {src: 'plugin/notes/notes.js', async: true}
+            ]});
+    </script>
+  </body>
+</html>

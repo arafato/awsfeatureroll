@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>AWS Feature Roll</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+	<div class="navbar-header">
+          <a class="navbar-brand">AWS Feature Roll</a>
+	</div>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to the AWS Feature Roll (Features)</h1>
+        <p>There are lot of services and features being released every week on the AWS platform. Keeping track about what's happening
+	  can be challenging sometimes. Querying all feature announcements or creating a ready-to-go slide deck is now as simple as</p>
+	<p>
+	  <code>$ wget &ldquo;awsfeatureroll.elasticbeanstalk.com/api/feature?cat=compute&startdate=2015-01-01&enddate=2015-05-15&rdquo; &gt; releases.json </code>
+	</p>
+	<p>
+	  <code>$ wget &ldquo;awsfeatureroll.elasticbeanstalk.com/api/slides?startdate=2015-06-01&enddate=2015-07-01</code>
+	</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>REST INTERFACE</h1>
+      
+      <h2>GET api/feature/</h2>
+      
+      <h3>Query parameters:</h3>
+      
+      <b>cat (optional)</b> - compute | storagecdn | database | networking | admin-sec | deployment | analytics | appservice | mobile | enterprise | other
+      <br>
+      <b>startdate (optional)</b> - YYYY-MM-DD
+      if without dateend, all matching items until current date are returned
+      <br>
+      <b>enddate (optional)</b> - YYYY-MM-DD
+      if without datestart, all matching items until earliest date are returned
+
+      <h3>Data Structure</h3>
+      <p>Here's an example:</p>
+      <p>
+	<code>
+	  [{"id":8,"category":"Compute","unixtimestamp":1432764000,"published":"Thu May 28 2015","title":"AWS Lambda Supports Uploading Code from S3","url":"https://aws.amazon.com/about-aws/whats-new/2015/05/aws-lambda-supports-uploading-code-from-s3/"}, ...]
+	</code>
+      </p>
+
+      <h2>GET api/slides</h2>
+      <p>
+	<em> This will return a zip package with a complete <a href="http://lab.hakim.se/reveal-js/#/">Reveal.js</a> slide deck.</em>
+      </p>
+      <h3>Query parameters:</h3>
+      <b>cat (optional)</b> - compute | storagecdn | database | networking | admin-sec | deployment | analytics | appservice | mobile | enterprise | other
+      <br>
+      <b>startdate (mandatory)</b> - YYYY-MM-DD
+      <br>
+      <b>enddate (mandatory)</b> - YYYY-MM-DD
+      <br>
+      <b>title (optional)</b> of your slide deck
+      default: AWS Feature Update
+      <br>
+      <b>author (optional)</b> your name
+      default: Amazon Web Services
+      <br>
+      <b>twitter (optional)</b> your Twitter handle (without @)
+      default: AWS_Aktuell
+
+      
+      <h2>Version History</h2>
+      <p>
+	- July 9th: Added automatic slide generation feature (revealjs)
+      </p>
+      <p>
+	- June 22th: Added CORS support for every origin
+      </p>
+      <p>
+	- June 19th: Added automatic data import: features are now
+	always up to date
+      </p>
+      <p>
+	- June 9th: Added data from 2004 - 2011
+      </p>
+      <p>
+	- June 8th: Initial release with data from 2012 - 2015(June 6th)
+      </p>
+      <hr>
+      <footer>
+	<p>&copy; Oliver Arafat 2015</p>
+      </footer>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
