@@ -21,10 +21,10 @@ KEYWORDS[CAT.STORAGE_CDN] = ["s3", "efs", "storage gateway", "glacier", "cloudfr
 KEYWORDS[CAT.DATABASE] = ["rds", "dynamodb", "elasticache", "redshift", "aurora", "mysql", "postgres", "oracle", "sql server"];
 KEYWORDS[CAT.NETWORKING] = ["vpc", "direct connect", "route 53"];
 KEYWORDS[CAT.ADMIN_SEC] = ["directory service", "iam", "trusted advisor", "cloudtrail", "config", "cloudwatch"];
-KEYWORDS[CAT.DEPLOY_MANAGE] = ["beanstalk", "opsworks", "cloudformation", "codedeploy"];
+KEYWORDS[CAT.DEPLOY_MANAGE] = ["beanstalk", "opsworks", "cloudformation", "codedeploy", "codecommit", "codepipeline"];
 KEYWORDS[CAT.ANALYTICS] = ["emr", "hadoop", "kinesis", "data pipeline", "machine learning"];
-KEYWORDS[CAT.APPSERVICES] = ["sqs", "swf", "appstream", "elastic transcoder", "ses", "cloudsearch", "email service", "queue service", "workflow service"];
-KEYWORDS[CAT.MOBILE] = ["cognito", "mobile analytics", "sns"];
+KEYWORDS[CAT.APPSERVICES] = ["sqs", "swf", "appstream", "elastic transcoder", "ses", "cloudsearch", "email service", "queue service", "workflow service", "api gateway"];
+KEYWORDS[CAT.MOBILE] = ["cognito", "mobile analytics", "sns", "device farm"];
 KEYWORDS[CAT.ENTERPRISEAPPS] = ["workspaces", "workdocs", "zocalo", "workmail"];
 
 var FeatureProto = {
