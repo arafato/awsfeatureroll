@@ -70,8 +70,13 @@ exports.handler = function(event, context) {
 		}
 	    }
 	    
-	    connection.end();
-	    context.done();
+	    connection.end(function(err) {
+		if (err) {
+		    context.fail(err);
+		}
+		context.succeed();
+	    });
+	    
 	});
     });
-}
+};
