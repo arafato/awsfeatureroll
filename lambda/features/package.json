@@ -1,0 +1,11 @@
+{
+  "name": "AWS-FeatureRoll-Features-Lambda",
+  "version": "1.0.0",
+  "description": "Lambdafied version of the REST service /api/features",
+  "author": "Oliver Arafat",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.10.3",
+    "mysql": "^2.7.0"
+  }
+}
