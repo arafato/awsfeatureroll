@@ -29,6 +29,7 @@ function getFeatures(connection, queryParams, cb) {
 function sanitizeParams(params, queryParams) {
      
     if (queryParams.startdate) {
+	console.log("startdate: " + queryParams.startdate);
 	var momstart = moment(queryParams.startdate);
 	if (!momstart.isValid()) {
 	    throw "Invalid format of startdate. Use YYYY-MM-DD";
@@ -38,6 +39,7 @@ function sanitizeParams(params, queryParams) {
     }
 
     if (queryParams.enddate) {
+	console.log("enddate: " + queryParams.enddate);
 	var momend = moment(queryParams.enddate);
 	if (!momend.isValid()) {
 	    throw "Invalid format of enddate. Use YYYY-MM-DD";
@@ -85,6 +87,8 @@ function buildQueryString(startdate, enddate, category) {
 
     var finalClause = "select * from features where " +  categoryClause + timeClause + " order by category";
 
+    console.log(finalClause);
+
     return finalClause;
 }
 
@@ -124,6 +128,8 @@ exports.handler = function(event, context) {
 	database : config.database,
 	port: 3306
     });
+
+    console.log(JSON.stringify(event));
     
     connection.connect();
 

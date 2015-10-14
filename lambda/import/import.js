@@ -47,14 +47,6 @@ function insertNewFeatures(features) {
 
 exports.handler = function(event, context) {
 
-    if (event.type !== "chime") {
-	context.done();
-    }
-
-    if (event.hour !== "00" && event.minute !== "00") {
-	context.done();
-    }
-    
     parser.getFeatures(year, function(results) {
 	connection.connect();
 	getLastTimestamp(function(currentTimestamp) {
