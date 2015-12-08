@@ -9,7 +9,7 @@
   "author": "Oliver Arafat",
   "license": "ISC",
   "dependencies": {
-    "aws-featureroll-parser": "0.0.2",
+    "aws-featureroll-parser": "1.0.0",
     "mysql": "^2.7.0"
   }
 }

@@ -2,10 +2,10 @@ var mysql = require("mysql");
 var parser = require("aws-featureroll-parser");
 
 var connection = mysql.createConnection({
-    host     : "XXX",
-    user     : "XXX",
-    password : "XXX",
-    database : "XXX"
+    host     : "",
+    user     : "",
+    password : "",
+    database : ""
 });
 
 var year = new Date().getFullYear();
