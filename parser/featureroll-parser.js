@@ -12,6 +12,7 @@ var CAT = {
     APPSERVICES : "Application Service",
     MOBILE : "Mobile Services",
     ENTERPRISEAPPS : "Enterprise Apps",
+    IOT : "IoT",
     OTHER : "Other"
 };
 
@@ -26,6 +27,7 @@ KEYWORDS[CAT.ANALYTICS] = ["emr", "hadoop", "kinesis", "data pipeline", "machine
 KEYWORDS[CAT.APPSERVICES] = ["sqs", "swf", "appstream", "elastic transcoder", "ses", "cloudsearch", "email service", "queue service", "workflow service", "api gateway"];
 KEYWORDS[CAT.MOBILE] = ["cognito", "mobile analytics", "sns", "device farm"];
 KEYWORDS[CAT.ENTERPRISEAPPS] = ["workspaces", "workdocs", "zocalo", "workmail"];
+KEYWORDS[CAT.IOT] = ["iot"];
 
 var FeatureProto = {
     date: "",
